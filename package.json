@@ -1,0 +1,15 @@
+{
+    "name": "@gapi-utils/nodejs",
+    "description": "Google API utility methods for Node.js",
+    "version": "0.0.0",
+    "author": "tshion",
+    "license": "Apache-2.0",
+    "private": true,
+    "main": "index.js",
+    "dependencies": {
+        "googleapis": "^144.0.0"
+    },
+    "devDependencies": {
+        "@types/node": "^22.0.0"
+    }
+}

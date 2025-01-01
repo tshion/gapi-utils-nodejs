@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "checkJs": true,
+        "module": "CommonJS",
+        "moduleResolution": "node",
+        "allowImportingTsExtensions": true,
+        "strictNullChecks": true,
+        "strictFunctionTypes": true,
+    },
+    "exclude": [
+        ".vscode",
+        "node_modules",
+        "**/node_modules/*",
+    ]
+}
