@@ -1,0 +1,27 @@
+{
+  "name": "@gapi-utils/nodejs",
+  "description": "Google API utility methods for Node.js",
+  "version": "2025.1.2",
+  "author": "tshion",
+  "license": "Apache-2.0",
+  "private": true,
+  "main": "build/src/index.js",
+  "types": "build/src/index.d.ts",
+  "files": [
+    "build/src"
+  ],
+  "scripts": {
+    "clean": "gts clean",
+    "compile": "tsc",
+    "fix": "gts fix",
+    "lint": "gts lint"
+  },
+  "dependencies": {
+    "googleapis": "^144.0.0"
+  },
+  "devDependencies": {
+    "gts": "^6.0.2",
+    "typescript": "^5.6.3",
+    "@types/node": "^22.0.0"
+  }
+}

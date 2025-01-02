@@ -1,0 +1,87 @@
+name: Create a pull request for set version
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+  create:
+    if: ${{ github.ref_type == 'branch' && github.ref_name == 'develop' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      # https://github.com/actions/checkout
+      - uses: actions/checkout@v4
+
+      - name: Decide version
+        id: meta
+        run: |
+          version=$(date +%Y.%m.%d)
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Can release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.meta.outputs.version }}
+        run: bash .github/scripts/can-release.bash "$TAG"
+
+      # https://github.com/actions/setup-node
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+          cache-dependency-path: ./package-lock.json
+
+      - name: Set version
+        env:
+          VERSION: ${{ steps.meta.outputs.version }}
+        run: npm version "$VERSION" --allow-same-version --no-git-tag-version
+
+      - run: npm ci
+
+      - run: npm run compile
+
+      - name: Generate diff notes
+        id: notes
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REF_NAME: ${{ github.ref_name }}
+          TAG: ${{ steps.meta.outputs.version }}
+        run: |
+          response=$(bash .github/scripts/presume-release-notes.bash "$TAG" "$REF_NAME")
+          echo "response=$response" >> "$GITHUB_OUTPUT"
+          echo "$response"
+
+      # https://github.com/tshion/apply-git-user
+      - uses: tshion/apply-git-user@2.0.7
+        with:
+          user: github-actions
+
+      - name: git add & push
+        env:
+          VERSION: ${{ steps.meta.outputs.version }}
+        run: |
+          branch="feature/$VERSION"
+          message="Update $VERSION"
+
+          git switch --create "$branch"
+          git add build
+          git add package.json
+          git add package-lock.json
+          git commit --message "$message"
+          git push --set-upstream origin "$branch"
+
+      - name: Create pull request
+        env:
+          ASSIGNEE: tshion
+          BASE: ${{ github.ref_name }}
+          BODY: ${{ fromJson(steps.notes.outputs.response).body }}
+          GH_TOKEN: ${{ github.token }}
+          TITLE: '${{ steps.meta.outputs.version }}'
+        run: gh pr create --assignee "$ASSIGNEE" --base "$BASE" --title "$TITLE" --body "$BODY"
