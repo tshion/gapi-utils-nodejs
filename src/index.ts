@@ -1,1 +1,1 @@
-export * from './utils/sheets.util';
+export {SheetsUtil} from './utils/sheets.util';
