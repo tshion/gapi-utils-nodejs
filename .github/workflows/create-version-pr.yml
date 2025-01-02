@@ -71,7 +71,7 @@ jobs:
           message="Update $VERSION"
 
           git switch --create "$branch"
-          git add --all build
+          git add build
           git add package.json
           git add package-lock.json
           git commit --message "$message"
