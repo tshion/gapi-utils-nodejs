@@ -8,7 +8,7 @@ Google API utility methods for Node.js.
 This library is not published as npm, please refer directly to GitHub repository.
 
 ``` shell
-npm install tshion/gapi-utils-nodejs
+npm install tshion/gapi-utils-nodejs#{version}
 ```
 
 After installing the above dependencies, refer to `@gapi-utils/nodejs` where you want to use it.

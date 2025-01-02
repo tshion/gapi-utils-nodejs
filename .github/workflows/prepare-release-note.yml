@@ -35,11 +35,11 @@ jobs:
           version=$(node -p "require('./package.json').version")
           echo "version=$version" >> "$GITHUB_OUTPUT"
 
-      - name: Create draft release notes
+      - name: Create release notes
         env:
           GH_TOKEN: ${{ github.token }}
           VERSION: ${{ steps.meta.outputs.version }}
         run: |
           git tag "$VERSION"
           git push origin "$VERSION"
-          gh release create "$VERSION" --draft --generate-notes --title "$VERSION"
+          gh release create "$VERSION" --generate-notes --title "$VERSION"

@@ -1,4 +1,4 @@
-name: Create a pull request for set version
+name: Create a release pull request
 
 on:
   workflow_dispatch:
@@ -68,20 +68,19 @@ jobs:
           VERSION: ${{ steps.meta.outputs.version }}
         run: |
           branch="feature/$VERSION"
-          message="Update $VERSION"
 
           git switch --create "$branch"
           git add build
           git add package.json
           git add package-lock.json
-          git commit --message "$message"
+          git commit --message "Update $VERSION"
           git push --set-upstream origin "$branch"
 
       - name: Create pull request
         env:
           ASSIGNEE: tshion
-          BASE: ${{ github.ref_name }}
+          BASE: released
           BODY: ${{ fromJson(steps.notes.outputs.response).body }}
           GH_TOKEN: ${{ github.token }}
-          TITLE: '${{ steps.meta.outputs.version }}'
-        run: gh pr create --assignee "$ASSIGNEE" --base "$BASE" --title "$TITLE" --body "$BODY"
+          VERSION: ${{ steps.meta.outputs.version }}
+        run: gh pr create --assignee "$ASSIGNEE" --base "$BASE" --title "Update $VERSION" --body "$BODY"
