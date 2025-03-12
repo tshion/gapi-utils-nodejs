@@ -18,7 +18,7 @@
     "lint": "gts lint"
   },
   "dependencies": {
-    "googleapis": "^144.0.0"
+    "googleapis": "^146.0.0"
   },
   "devDependencies": {
     "@types/node": "^22.13.4",
