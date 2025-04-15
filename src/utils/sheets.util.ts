@@ -71,4 +71,32 @@ export class SheetsUtil {
       ?.find(x => x?.title === title)?.sheetId;
     return !id ? undefined : id;
   }
+
+  /**
+   * Returns a cell reference as a string.
+   *
+   * @param row The row number of the cell reference
+   * @param column The column number (not name) of the cell reference. A is column number 1.
+   */
+  public static formatCellAddress(row: number, column: number) {
+    if (column < 1 || row < 1) {
+      throw new RangeError();
+    }
+
+    const countAlphabet = 26;
+    const digits = new Array<number>();
+    let tmp = column - 1;
+    do {
+      digits.push(tmp % countAlphabet);
+      tmp = Math.floor(tmp / countAlphabet);
+    } while (countAlphabet < tmp);
+    if (0 < tmp) {
+      digits.push(tmp);
+    }
+    digits.reverse();
+
+    const codeA = 'A'.charCodeAt(0);
+    const columnName = String.fromCharCode(...digits.map(x => codeA + x));
+    return `${columnName}${row}`;
+  }
 }
