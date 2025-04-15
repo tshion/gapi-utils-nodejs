@@ -15,7 +15,8 @@
     "compile": "tsc",
     "docs": "npx jsdoc --configure conf.json --match build/src/**/*.js --readme README.md",
     "fix": "gts fix",
-    "lint": "gts lint"
+    "lint": "gts lint",
+    "test": "node --import tsx --test 'src/**/*.test.ts'"
   },
   "dependencies": {
     "googleapis": "^148.0.0"
@@ -24,6 +25,7 @@
     "@types/node": "^22.14.0",
     "gts": "^6.0.2",
     "jsdoc": "^4.0.4",
+    "tsx": "^4.19.3",
     "typescript": "^5.8.3"
   }
 }

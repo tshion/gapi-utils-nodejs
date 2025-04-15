@@ -91,7 +91,7 @@ export class SheetsUtil {
       tmp = Math.floor(tmp / countAlphabet);
     } while (countAlphabet < tmp);
     if (0 < tmp) {
-      digits.push(tmp);
+      digits.push(tmp - 1);
     }
     digits.reverse();
 
