@@ -10,13 +10,13 @@ updates:
     schedule:
       interval: 'weekly'
       day: 'tuesday'
-    assignees:
-      - 'tshion'
+    reviewers:
+      - "tshion"
 
   - package-ecosystem: 'npm'
     directory: '/'
     schedule:
       interval: 'weekly'
       day: 'tuesday'
-    assignees:
-      - 'tshion'
+    reviewers:
+      - "tshion"
