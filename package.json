@@ -22,7 +22,7 @@
     "googleapis": "^148.0.0"
   },
   "devDependencies": {
-    "@types/node": "^22.15.29",
+    "@types/node": "^24.0.15",
     "gts": "^6.0.2",
     "jsdoc": "^4.0.4",
     "tsx": "^4.19.3",
