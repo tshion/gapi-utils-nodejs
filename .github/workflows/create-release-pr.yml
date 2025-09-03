@@ -59,7 +59,7 @@ jobs:
           echo "$response"
 
       # https://github.com/tshion/apply-git-user
-      - uses: tshion/apply-git-user@2.1.2
+      - uses: tshion/apply-git-user@3.0.0
         with:
           user: github-actions
 
