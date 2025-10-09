@@ -25,7 +25,7 @@ jobs:
       pages: write
     steps:
       # https://github.com/actions/checkout
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       # https://github.com/actions/setup-node
       - uses: actions/setup-node@v4
