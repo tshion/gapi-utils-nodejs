@@ -24,7 +24,7 @@
   "devDependencies": {
     "@types/node": "^22.15.29",
     "gts": "^6.0.2",
-    "jsdoc": "^4.0.4",
+    "jsdoc": "^4.0.5",
     "tsx": "^4.20.5",
     "typescript": "^5.9.2"
   }
