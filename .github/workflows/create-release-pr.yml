@@ -32,7 +32,7 @@ jobs:
         run: bash .github/scripts/can-release.bash "$TAG"
 
       # https://github.com/actions/setup-node
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         with:
           node-version-file: .node-version
           cache: npm
