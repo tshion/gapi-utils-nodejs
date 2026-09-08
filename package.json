@@ -19,7 +19,7 @@
     "test": "node --import tsx --test 'src/**/*.test.ts'"
   },
   "dependencies": {
-    "googleapis": "^156.0.0"
+    "googleapis": "^178.0.0"
   },
   "devDependencies": {
     "@types/node": "^22.15.29",
