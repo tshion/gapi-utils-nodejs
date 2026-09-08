@@ -49,7 +49,7 @@ jobs:
 
       # https://github.com/actions/deploy-pages
       - id: deployment
-        uses: actions/deploy-pages@v5.0.0
+        uses: actions/deploy-pages@v5.0.1
 
       - name: Get version name
         id: meta
